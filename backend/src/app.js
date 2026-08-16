@@ -2,16 +2,20 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './config/db.js';
+import authRoutes from './routes/authRoutes.js';
+import portfolioRoutes from './routes/portfolioRoutes.js';
 
 dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Health Check Route
+// API Routes
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/portfolios', portfolioRoutes);
+
 app.get('/health', async (req, res) => {
   try {
     const result = await pool.query('SELECT NOW()');
