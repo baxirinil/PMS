@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import pool from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import portfolioRoutes from './routes/portfolioRoutes.js';
+import transactionRoutes from './routes/transactionRoutes.js';
+import reportRoutes from './routes/reportRoutes.js';
 
 dotenv.config();
 
@@ -15,6 +17,8 @@ app.use(express.json());
 // API Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/portfolios', portfolioRoutes);
+app.use('/api/v1/transactions', transactionRoutes);
+app.use('/api/v1/reports', reportRoutes);
 
 app.get('/health', async (req, res) => {
   try {
